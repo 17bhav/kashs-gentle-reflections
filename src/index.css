@@ -7,35 +7,35 @@
 
 @layer base {
   :root {
-    --background: 40 33% 95%;
-    --foreground: 20 10% 25%;
+    --background: 270 70% 98%;
+    --foreground: 270 20% 25%;
 
-    --card: 40 33% 98%;
-    --card-foreground: 20 10% 25%;
+    --card: 270 60% 98%;
+    --card-foreground: 270 20% 25%;
 
-    --popover: 40 33% 98%;
-    --popover-foreground: 20 10% 25%;
+    --popover: 270 60% 98%;
+    --popover-foreground: 270 20% 25%;
 
-    --primary: 20 10% 25%;
-    --primary-foreground: 40 33% 98%;
+    --primary: 270 95% 60%;
+    --primary-foreground: 270 20% 98%;
 
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 20 10% 25%;
+    --secondary: 270 30% 96%;
+    --secondary-foreground: 270 20% 25%;
 
-    --muted: 220 14% 96%;
-    --muted-foreground: 20 6% 50%;
+    --muted: 270 30% 96%;
+    --muted-foreground: 270 10% 50%;
 
-    --accent: 220 14% 96%;
-    --accent-foreground: 20 10% 25%;
+    --accent: 319 80% 66%;
+    --accent-foreground: 270 20% 25%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 20 6% 90%;
-    --input: 20 6% 90%;
-    --ring: 20 10% 65%;
+    --border: 270 20% 90%;
+    --input: 270 20% 90%;
+    --ring: 270 40% 65%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
   }
 
   * {
@@ -43,7 +43,7 @@
   }
 
   body {
-    @apply bg-gentle-beige text-foreground font-lora;
+    @apply bg-background text-foreground font-lora antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -52,31 +52,34 @@
 }
 
 @layer utilities {
-  .letter-container {
-    @apply max-w-2xl mx-auto px-6 py-10 md:py-14 bg-white/50 backdrop-blur-sm rounded-md shadow-sm;
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
   
-  .page-container {
-    @apply min-h-screen bg-gentle-beige bg-paper-texture bg-opacity-50 pb-16 px-4 md:px-8;
-  }
-
-  .letter-heading {
-    @apply text-3xl md:text-4xl font-playfair font-medium mb-6 text-primary;
-  }
-  
-  .letter-paragraph {
-    @apply text-base md:text-lg leading-relaxed mb-5 text-foreground/90;
-  }
-
-  .memories-grid {
-    @apply grid grid-cols-1 md:grid-cols-2 gap-6;
-  }
-
-  .gentle-link {
-    @apply text-primary/80 hover:text-primary underline decoration-gentle-brown/30 hover:decoration-gentle-brown/70 transition-colors;
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.1);
+    }
   }
   
-  .memory-card {
-    @apply bg-white bg-opacity-70 p-5 rounded-md shadow-sm border border-gentle-brown/10 hover:border-gentle-brown/30 transition-all hover:shadow-md;
+  .animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
