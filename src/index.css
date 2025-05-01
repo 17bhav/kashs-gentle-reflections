@@ -44,6 +44,11 @@
 
   body {
     @apply bg-background text-foreground font-lora antialiased;
+    background-image: url('/paper-texture.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -81,5 +86,23 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  .carousel-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .carousel-image-container:hover .carousel-image {
+    transform: scale(1.05);
   }
 }

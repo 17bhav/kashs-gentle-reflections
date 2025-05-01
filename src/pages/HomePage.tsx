@@ -1,7 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
-import { Heart, GalleryVertical } from 'lucide-react';
+import { Heart, GalleryVertical, List } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious
+} from "@/components/ui/carousel";
 
 interface Memory {
   id: number;
@@ -12,7 +19,6 @@ interface Memory {
 const HomePage: React.FC = () => {
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(null);
-  const [activeSection, setActiveSection] = useState<string>("letter");
 
   useEffect(() => {
     // Create audio element
@@ -105,55 +111,84 @@ const HomePage: React.FC = () => {
     }
   ];
 
+  const sharedActivities = [
+    "Concerts we attended together: Peter Cat Recording Co., Diljit Dosanjh, Coldplay, Ed Sheeran",
+    "Trips we took: Amritsar, Mumbai",
+    "Playing FIFA and chess together",
+    "Making websites side by side",
+    "Exploring restaurants and eating together"
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100">
+    <div className="min-h-screen bg-gradient-to-br from-purple-400 via-pink-300 to-blue-300">
       {/* Header */}
       <header className="pt-10 pb-6 text-center">
-        <h1 className="text-5xl font-playfair font-medium text-purple-800 animate-fade-in">
+        <h1 className="text-5xl font-playfair font-medium text-white animate-fade-in drop-shadow-lg">
           Dear Kash
         </h1>
-        <div className="mt-2 text-sm text-purple-600 italic">memories to keep</div>
+        <div className="mt-2 text-sm text-white/80 italic">memories to keep</div>
       </header>
 
       {/* Main Content */}
       <main className="max-w-5xl mx-auto px-4 pb-20">
+        {/* Image Carousel */}
+        <div className="mb-10">
+          <Carousel className="w-full max-w-4xl mx-auto">
+            <CarouselContent>
+              {memories.map((memory) => (
+                <CarouselItem key={memory.id}>
+                  <div className="p-1">
+                    <div className="overflow-hidden rounded-lg shadow-lg bg-black/10 backdrop-blur-sm">
+                      <div className="relative aspect-video overflow-hidden">
+                        <img 
+                          src={memory.image} 
+                          alt={memory.title} 
+                          className="w-full h-full object-cover" 
+                        />
+                        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
+                          <h3 className="text-white font-medium font-playfair text-xl">
+                            {memory.title}
+                          </h3>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-2" />
+            <CarouselNext className="right-2" />
+          </Carousel>
+        </div>
+
         {/* Letter Section */}
-        <div className="mt-6 p-8 bg-white/70 backdrop-blur-sm rounded-lg shadow-sm animate-fade-in">
+        <div className="mt-6 p-8 bg-white/70 backdrop-blur-sm rounded-lg shadow-md animate-fade-in">
           <p className="text-lg md:text-xl leading-relaxed mb-6 text-gray-800 font-lora">
             Dear Kash, I made a mistake. I can't erase that pain or undo that moment but I want you to know that I have immense respect for you. I respect your decision to leave, but I'd like to share this with you: some happy memories that you can keep.
           </p>
 
-          {/* Photo Gallery */}
-          <div className="mt-10">
+          {/* Shared Memories List */}
+          <div className="mt-8 mb-8">
             <h2 className="text-2xl font-playfair mb-6 text-center text-purple-700 flex items-center justify-center gap-2">
-              <GalleryVertical className="h-6 w-6" /> 
-              <span>Our Memories</span>
+              <List className="h-6 w-6" /> 
+              <span>Our Memories Together</span>
             </h2>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-              {memories.map((memory) => (
-                <div key={memory.id} className="transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                  <div className="overflow-hidden rounded-lg shadow-sm bg-white h-full flex flex-col">
-                    <div className="h-64 overflow-hidden">
-                      <img 
-                        src={memory.image} 
-                        alt={memory.title} 
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" 
-                      />
-                    </div>
-                    <div className="p-4 flex-grow bg-gradient-to-r from-purple-50 to-pink-50">
-                      <h3 className="font-medium text-purple-800 font-playfair text-lg">
-                        {memory.title}
-                      </h3>
-                    </div>
-                  </div>
-                </div>
+            <ul className="space-y-3 max-w-2xl mx-auto">
+              {sharedActivities.map((activity, index) => (
+                <li 
+                  key={index} 
+                  className="py-2 px-4 bg-gradient-to-r from-purple-100 to-pink-100 rounded-lg shadow-sm text-purple-800 font-lora animate-fade-in"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  {activity}
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
           {/* Closing Message */}
-          <div className="mt-12 pt-8 border-t border-purple-100 text-center">
+          <div className="mt-12 pt-8 border-t border-purple-200 text-center">
             <p className="text-lg italic text-purple-800 mb-3">
               I love you Kash, always your baby.
             </p>
