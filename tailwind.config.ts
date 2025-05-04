@@ -63,6 +63,10 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
+				// Adding the new custom colors
+				'soft-beige': '#e2d5ca',
+				'deep-rose': '#c65060',
+				'soft-lavender': '#eeadea',
 				pink: {
 					50: '#fdf2f8',
 					100: '#fce7f3',

@@ -16,7 +16,7 @@
     --popover: 270 60% 98%;
     --popover-foreground: 270 20% 25%;
 
-    --primary: 270 95% 60%;
+    --primary: 347 55% 58%;
     --primary-foreground: 270 20% 98%;
 
     --secondary: 270 30% 96%;
@@ -25,7 +25,7 @@
     --muted: 270 30% 96%;
     --muted-foreground: 270 10% 50%;
 
-    --accent: 319 80% 66%;
+    --accent: 296 73% 80%;
     --accent-foreground: 270 20% 25%;
 
     --destructive: 0 84.2% 60.2%;
@@ -43,7 +43,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-lora antialiased;
+    @apply bg-soft-beige text-foreground font-lora antialiased;
     background-image: url('/paper-texture.png');
     background-size: cover;
     background-repeat: no-repeat;

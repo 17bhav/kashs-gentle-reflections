@@ -94,13 +94,13 @@ const HomePage: React.FC = () => {
 
   const sharedActivities = ["Concerts we attended together: Peter Cat Recording Co., Diljit Dosanjh, Coldplay, Ed Sheeran", "Trips we took: Amritsar, Mumbai", "Playing FIFA and chess together", "Making websites side by side", "Exploring restaurants and eating together"];
 
-  return <div className="min-h-screen bg-gradient-to-br from-emerald-400 via-teal-300 to-blue-400">
+  return <div className="min-h-screen bg-gradient-to-br from-soft-beige via-soft-lavender to-deep-rose/30">
       {/* Header */}
       <header className="pt-10 pb-6 text-center">
-        <h1 className="text-5xl font-playfair font-medium text-white animate-fade-in drop-shadow-lg">
+        <h1 className="text-5xl font-playfair font-medium text-deep-rose animate-fade-in drop-shadow-lg">
           Dear Kash
         </h1>
-        <div className="mt-2 text-sm text-white/80 italic">memories to keep</div>
+        <div className="mt-2 text-sm text-deep-rose/80 italic">your baby loves you</div>
       </header>
 
       {/* Main Content */}
@@ -128,13 +128,13 @@ const HomePage: React.FC = () => {
         <div className="mt-6 p-8 bg-white/70 backdrop-blur-sm rounded-lg shadow-md animate-fade-in">
           {/* Shared Memories List */}
           <div className="mt-4 mb-8">
-            <h2 className="text-2xl font-playfair mb-6 text-center text-teal-700 flex items-center justify-center gap-2">
+            <h2 className="text-2xl font-playfair mb-6 text-center text-deep-rose flex items-center justify-center gap-2">
               <List className="h-6 w-6" /> 
               <span>Some of our fondest memories together</span>
             </h2>
             
             <ul className="space-y-3 max-w-2xl mx-auto">
-              {sharedActivities.map((activity, index) => <li key={index} className="py-2 px-4 bg-gradient-to-r from-teal-100 to-emerald-100 rounded-lg shadow-sm text-teal-800 font-lora animate-fade-in" style={{
+              {sharedActivities.map((activity, index) => <li key={index} className="py-2 px-4 bg-gradient-to-r from-soft-beige to-soft-lavender/50 rounded-lg shadow-sm text-deep-rose/90 font-lora animate-fade-in" style={{
               animationDelay: `${index * 0.1}s`
             }}>
                   {activity}
@@ -143,9 +143,9 @@ const HomePage: React.FC = () => {
           </div>
 
           {/* Poem Section */}
-          <div className="my-8 px-4 py-6 bg-teal-50/80 rounded-lg max-w-2xl mx-auto">
-            <h3 className="text-xl font-playfair mb-4 text-center text-teal-700">Poem</h3>
-            <div className="text-teal-800 font-lora space-y-4">
+          <div className="my-8 px-4 py-6 bg-soft-beige/40 rounded-lg max-w-2xl mx-auto">
+            <h3 className="text-xl font-playfair mb-4 text-center text-deep-rose">Poem</h3>
+            <div className="text-deep-rose/90 font-lora space-y-4">
               <p>I don't get you,<br/>
               But I can tell how your day went,<br/>
               By the sound of your hello.</p>
@@ -187,15 +187,15 @@ const HomePage: React.FC = () => {
           </div>
 
           {/* Closing Message */}
-          <div className="mt-12 pt-8 border-t border-teal-200 text-center">
-            <p className="text-lg italic text-teal-800 mb-3">
+          <div className="mt-12 pt-8 border-t border-soft-lavender/50 text-center">
+            <p className="text-lg italic text-deep-rose mb-3">
               I love you Kash, always your baby.
             </p>
-            <p className="text-md text-teal-700">
+            <p className="text-md text-deep-rose/80">
               You are my boyfriend, you also play the role of a sibling, a parent, and my bestfriend.
             </p>
             <div className="mt-4 animate-pulse flex justify-center">
-              <Heart className="text-pink-500 h-8 w-8" fill="#ec4899" />
+              <Heart className="text-deep-rose h-8 w-8" fill="#c65060" />
             </div>
           </div>
         </div>
@@ -203,8 +203,8 @@ const HomePage: React.FC = () => {
       
       {/* Music Toggle */}
       <div className="fixed bottom-6 right-6">
-        <Button onClick={toggleMusic} variant="outline" size="icon" className="rounded-full w-10 h-10 bg-white/80 shadow-sm border-teal-200 hover:bg-white">
-          {isMusicPlaying ? <span className="text-teal-800">♪</span> : <span className="text-teal-800">♫</span>}
+        <Button onClick={toggleMusic} variant="outline" size="icon" className="rounded-full w-10 h-10 bg-white/80 shadow-sm border-soft-lavender hover:bg-white">
+          {isMusicPlaying ? <span className="text-deep-rose">♪</span> : <span className="text-deep-rose">♫</span>}
         </Button>
       </div>
     </div>;
