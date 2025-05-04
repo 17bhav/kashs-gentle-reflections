@@ -1,3 +1,3 @@
-
-// This is a placeholder for a gentle piano music file
-// In a real application, you would upload a proper audio file
+<audio autoplay loop>
+  <source src="https://docs.google.com/uc?export=download&id=1gQe0B5lw5Y4ljlS7v9NBZCWUtdXNy32g" type="audio/mp3">
+</audio>
