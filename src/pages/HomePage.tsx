@@ -1,21 +1,26 @@
+
 import React, { useState, useEffect } from 'react';
 import { Heart, GalleryVertical, List } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+
 interface Memory {
   id: number;
   title: string;
   image: string;
 }
+
 const HomePage: React.FC = () => {
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(null);
+
   useEffect(() => {
     // Create audio element
     const audio = new Audio('/gentle-piano.mp3');
     audio.loop = true;
     audio.volume = 0.4;
     setAudioElement(audio);
+
     return () => {
       if (audio) {
         audio.pause();
@@ -23,6 +28,7 @@ const HomePage: React.FC = () => {
       }
     };
   }, []);
+
   const toggleMusic = () => {
     if (audioElement) {
       if (isMusicPlaying) {
@@ -35,6 +41,7 @@ const HomePage: React.FC = () => {
       setIsMusicPlaying(!isMusicPlaying);
     }
   };
+
   const memories: Memory[] = [{
     id: 1,
     title: "Road Trips Together",
@@ -84,8 +91,10 @@ const HomePage: React.FC = () => {
     title: "Stadium Adventures",
     image: "/lovable-uploads/c69ec858-9d4d-479a-a21f-9ef1cc801351.png"
   }];
+
   const sharedActivities = ["Concerts we attended together: Peter Cat Recording Co., Diljit Dosanjh, Coldplay, Ed Sheeran", "Trips we took: Amritsar, Mumbai", "Playing FIFA and chess together", "Making websites side by side", "Exploring restaurants and eating together"];
-  return <div className="min-h-screen bg-gradient-to-br from-purple-400 via-pink-300 to-blue-300">
+
+  return <div className="min-h-screen bg-gradient-to-br from-emerald-400 via-teal-300 to-blue-400">
       {/* Header */}
       <header className="pt-10 pb-6 text-center">
         <h1 className="text-5xl font-playfair font-medium text-white animate-fade-in drop-shadow-lg">
@@ -105,11 +114,6 @@ const HomePage: React.FC = () => {
                     <div className="overflow-hidden rounded-lg shadow-lg bg-black/10 backdrop-blur-sm">
                       <div className="relative aspect-video overflow-hidden">
                         <img src={memory.image} alt={memory.title} className="w-full h-full object-contain" />
-                        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
-                          <h3 className="text-white font-medium font-playfair text-xl">
-                            {memory.title}
-                          </h3>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -122,19 +126,15 @@ const HomePage: React.FC = () => {
 
         {/* Letter Section */}
         <div className="mt-6 p-8 bg-white/70 backdrop-blur-sm rounded-lg shadow-md animate-fade-in">
-          <p className="text-lg md:text-xl leading-relaxed mb-6 text-gray-800 font-lora">
-            Dear Kash, I made a mistake. I can't erase that pain or undo that moment but I want you to know that I have immense respect for you. I respect your decision to leave, but I'd like to share this with you: some happy memories that you can keep.
-          </p>
-
           {/* Shared Memories List */}
-          <div className="mt-8 mb-8">
-            <h2 className="text-2xl font-playfair mb-6 text-center text-purple-700 flex items-center justify-center gap-2">
+          <div className="mt-4 mb-8">
+            <h2 className="text-2xl font-playfair mb-6 text-center text-teal-700 flex items-center justify-center gap-2">
               <List className="h-6 w-6" /> 
-              <span>Our Memories Together</span>
+              <span>Some of our fondest memories together</span>
             </h2>
             
             <ul className="space-y-3 max-w-2xl mx-auto">
-              {sharedActivities.map((activity, index) => <li key={index} className="py-2 px-4 bg-gradient-to-r from-purple-100 to-pink-100 rounded-lg shadow-sm text-purple-800 font-lora animate-fade-in" style={{
+              {sharedActivities.map((activity, index) => <li key={index} className="py-2 px-4 bg-gradient-to-r from-teal-100 to-emerald-100 rounded-lg shadow-sm text-teal-800 font-lora animate-fade-in" style={{
               animationDelay: `${index * 0.1}s`
             }}>
                   {activity}
@@ -142,13 +142,57 @@ const HomePage: React.FC = () => {
             </ul>
           </div>
 
+          {/* Poem Section */}
+          <div className="my-8 px-4 py-6 bg-teal-50/80 rounded-lg max-w-2xl mx-auto">
+            <h3 className="text-xl font-playfair mb-4 text-center text-teal-700">Poem</h3>
+            <div className="text-teal-800 font-lora space-y-4">
+              <p>I don't get you,<br/>
+              But I can tell how your day went,<br/>
+              By the sound of your hello.</p>
+
+              <p>I don't get you,<br/>
+              But I know the days you have classes,<br/>
+              The dates of your family's birthdays.<br/>
+              I know how your week looks,<br/>
+              And how you feel about it.</p>
+
+              <p>I don't get you,<br/> 
+              But I know when I ask you to smile,<br/>
+              The first is fake,<br/>
+              And the second is you calling me stupid,<br/>
+              And genuinely laughing</p>
+
+              <p>I don't get you,<br/>
+              But I know how you like your coffee, cold and dark.<br/>
+              But I know how you like your parantha, without ajwain.<br/>
+              But I know the recipe to making you happy.</p>
+
+              <p>I don't get you,<br/>
+              At times.<br/>
+              And neither do you,<br/>
+              At times.<br/>
+              That's why we have words,<br/>
+              And tongues to express. (And explore)</p>
+
+              <p>I don't get you,<br/>
+              But I hear you,<br/>
+              But I learn,<br/>
+              But I understand.</p>
+
+              <p>I don't get you,<br/>
+              But I am willing to learn,<br/>
+              And keep learning,<br/>
+              Till eternity.</p>
+            </div>
+          </div>
+
           {/* Closing Message */}
-          <div className="mt-12 pt-8 border-t border-purple-200 text-center">
-            <p className="text-lg italic text-purple-800 mb-3">
+          <div className="mt-12 pt-8 border-t border-teal-200 text-center">
+            <p className="text-lg italic text-teal-800 mb-3">
               I love you Kash, always your baby.
             </p>
-            <p className="text-md text-purple-700">
-              You have been a boyfriend, a sibling, a parent, and my bestfriend. You'll always remain a best friend :)
+            <p className="text-md text-teal-700">
+              You are my boyfriend, you also play the role of a sibling, a parent, and my bestfriend.
             </p>
             <div className="mt-4 animate-pulse flex justify-center">
               <Heart className="text-pink-500 h-8 w-8" fill="#ec4899" />
@@ -159,10 +203,11 @@ const HomePage: React.FC = () => {
       
       {/* Music Toggle */}
       <div className="fixed bottom-6 right-6">
-        <Button onClick={toggleMusic} variant="outline" size="icon" className="rounded-full w-10 h-10 bg-white/80 shadow-sm border-purple-200 hover:bg-white">
-          {isMusicPlaying ? <span className="text-purple-800">♪</span> : <span className="text-purple-800">♫</span>}
+        <Button onClick={toggleMusic} variant="outline" size="icon" className="rounded-full w-10 h-10 bg-white/80 shadow-sm border-teal-200 hover:bg-white">
+          {isMusicPlaying ? <span className="text-teal-800">♪</span> : <span className="text-teal-800">♫</span>}
         </Button>
       </div>
     </div>;
 };
+
 export default HomePage;
