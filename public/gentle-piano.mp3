@@ -1,3 +1,20 @@
-<audio autoplay loop>
-  <source src="https://file.garden/aBffCocMlhtqlbQo/Kashish%2C%20My%20Forever.mp3" type="audio/mp3">
-</audio>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website Title</title>
+</head>
+<body>
+    <!-- Audio Player with Controls -->
+    <audio controls autoplay>
+        <source src="https://file.garden/aBffCocMlhtqlbQo/Kashish%2C%20My%20Forever.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Your website content goes here -->
+    <h1>Welcome to My Website</h1>
+    <p>If the music does not start, use the controls above to play it!</p>
+
+</body>
+</html>
