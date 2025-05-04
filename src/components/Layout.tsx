@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Navigation from './Navigation';
 import { Button } from '@/components/ui/button';
 import { Volume2, VolumeX } from 'lucide-react';
+import { useToast } from '@/components/ui/use-toast';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -11,6 +12,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
     // Create audio element
@@ -19,21 +21,48 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     audio.volume = 0.4;
     setAudioElement(audio);
 
+    // Add event listeners for audio loading/errors
+    audio.addEventListener('canplaythrough', () => {
+      console.log('Audio is ready to play');
+    });
+
+    audio.addEventListener('error', (e) => {
+      console.error("Audio error:", e);
+      toast({
+        title: "Audio Error",
+        description: "Unable to load background music. Please try again later.",
+        variant: "destructive",
+      });
+    });
+
     return () => {
       if (audio) {
         audio.pause();
         audio.src = '';
       }
     };
-  }, []);
+  }, [toast]);
 
   const toggleMusic = () => {
     if (audioElement) {
       if (isMusicPlaying) {
         audioElement.pause();
+        toast({
+          title: "Music Paused",
+          description: "Background music has been paused.",
+        });
       } else {
         audioElement.play().catch(error => {
           console.error("Audio playback failed:", error);
+          toast({
+            title: "Playback Error",
+            description: "Unable to play background music. This might be due to browser restrictions.",
+            variant: "destructive",
+          });
+        });
+        toast({
+          title: "Music Playing",
+          description: "Enjoy the background music!",
         });
       }
       setIsMusicPlaying(!isMusicPlaying);
@@ -47,7 +76,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <h1 className="text-4xl md:text-5xl font-playfair font-medium text-primary">
             Dear Kash
           </h1>
-          <div className="mt-2 text-sm text-primary/70 italic">Thoughts from the heart</div>
+          <div className="mt-2 text-sm text-primary/70 italic">your baby loves you</div>
         </div>
       </header>
       

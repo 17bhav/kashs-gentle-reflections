@@ -1,7 +1,6 @@
 
-import React, { useState, useEffect } from 'react';
-import { Heart, GalleryVertical, List } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import React from 'react';
+import { Heart, List } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 interface Memory {
@@ -11,37 +10,6 @@ interface Memory {
 }
 
 const HomePage: React.FC = () => {
-  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
-  const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(null);
-
-  useEffect(() => {
-    // Create audio element
-    const audio = new Audio('/gentle-piano.mp3');
-    audio.loop = true;
-    audio.volume = 0.4;
-    setAudioElement(audio);
-
-    return () => {
-      if (audio) {
-        audio.pause();
-        audio.src = '';
-      }
-    };
-  }, []);
-
-  const toggleMusic = () => {
-    if (audioElement) {
-      if (isMusicPlaying) {
-        audioElement.pause();
-      } else {
-        audioElement.play().catch(error => {
-          console.error("Audio playback failed:", error);
-        });
-      }
-      setIsMusicPlaying(!isMusicPlaying);
-    }
-  };
-
   const memories: Memory[] = [{
     id: 1,
     title: "Road Trips Together",
@@ -95,14 +63,6 @@ const HomePage: React.FC = () => {
   const sharedActivities = ["Concerts we attended together: Peter Cat Recording Co., Diljit Dosanjh, Coldplay, Ed Sheeran", "Trips we took: Amritsar, Mumbai", "Playing FIFA and chess together", "Making websites side by side", "Exploring restaurants and eating together"];
 
   return <div className="min-h-screen bg-soft-beige">
-      {/* Header */}
-      <header className="pt-10 pb-6 text-center">
-        <h1 className="text-5xl font-playfair font-medium text-gentle-brown animate-fade-in drop-shadow-lg">
-          Dear Kash
-        </h1>
-        <div className="mt-2 text-sm text-gentle-brown/80 italic">your baby loves you</div>
-      </header>
-
       {/* Main Content */}
       <main className="max-w-5xl mx-auto px-4 pb-20">
         {/* Image Carousel */}
@@ -200,13 +160,6 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </main>
-      
-      {/* Music Toggle */}
-      <div className="fixed bottom-6 right-6">
-        <Button onClick={toggleMusic} variant="outline" size="icon" className="rounded-full w-10 h-10 bg-white/80 shadow-sm border-light-sand hover:bg-white">
-          {isMusicPlaying ? <span className="text-gentle-brown">♪</span> : <span className="text-gentle-brown">♫</span>}
-        </Button>
-      </div>
     </div>;
 };
 
